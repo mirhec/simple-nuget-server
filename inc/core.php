@@ -8,6 +8,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 });
 
 function api_error($code, $message) {
+	header("HTTP/1.1 $code $message");
 	header('Status: ' . $code . ' ' . $message);
 	header('Content-Type: text/plain');
 	echo htmlspecialchars($message);
@@ -53,5 +54,5 @@ function get_package_path($id, $version) {
 	}
 
 	// This is safe - These values have been validated via validateIdAndVersion above
-	return '/packagefiles/' . $id . '/' . $version . '.nupkg';
+	return Config::$packageDir . $id . '/' . $version . '.nupkg';
 }

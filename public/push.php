@@ -1,5 +1,10 @@
 <?php
 require_once(__DIR__ . '/../inc/core.php');
+require_once(__DIR__ . '/../inc/parseput.php');
+
+if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+	parsePut();
+}
 
 require_auth();
 
@@ -77,7 +82,10 @@ $path = $dir . $version . '.nupkg';
 if (!file_exists($dir)) {
 	mkdir($dir, /* mode */ 0755, /* recursive */ true);
 }
-if (!move_uploaded_file($upload_filename, $path)) {
+//if (!move_uploaded_file($upload_filename, $path)) {
+//	api_error('500', 'Could not save file');
+//}
+if (!rename($upload_filename, $path)) {
 	api_error('500', 'Could not save file');
 }
 
