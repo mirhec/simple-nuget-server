@@ -10,8 +10,8 @@ if (request_method() !== 'DELETE') {
 
 require_auth();
 
-$id = $_GET['id'];
-$version = $_GET['version'];
+$package = str_replace($_SERVER['REWRITE_BASE'], '', $_SERVER['REQUEST_URI']);
+list($id, $version) = explode('/', $package);
 $path = get_package_path($id, $version);
 
 if (file_exists($path)) {
