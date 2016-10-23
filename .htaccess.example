@@ -1,3 +1,5 @@
+# Remove or comment this Limit section if running Apache < 2.4.
+# http://stackoverflow.com/a/22040167/4003194
 <Limit PUT>
 Require all granted
 </Limit>
