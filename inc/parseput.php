@@ -60,14 +60,21 @@ function parsePut()
 			list($name, $value) = explode(':', $header);
 			$headers[strtolower($name)] = ltrim($value, ' ');
 		}
-		
+
 		$matches = array();
 		// Parse the Content-Disposition to get the field name, etc.
 		if (isset($headers['content-disposition'])) {
 			$filename = null;
 			$tmp_name = null;
+
+			# TODO: define a single regex that matches quoted and unquoted values.
+			$pattern = '/^(.+); *name="([^"]+)"(; *filename="([^"]+)")?/';
+			if (false === strpos($headers['content-disposition'], '"')) {		
+				$pattern = "/^(.+); name=(.+)(; filename=(.+);.*)$/";
+			}
+		
 			preg_match(
-                '/^(.+); *name="([^"]+)"(; *filename="([^"]+)")?/',
+                $pattern,
 				$headers['content-disposition'],
 				$matches
 			);
