@@ -10,7 +10,11 @@ if (request_method() !== 'DELETE') {
 
 require_auth();
 
-$package = str_replace($_SERVER['REWRITE_BASE'], '', $_SERVER['REQUEST_URI']);
+# When rewrite base is the root path (/), /api/v2/package is prefixed in Apache.
+# TODO: Handle this in .htaccess rewrite rules.
+$package = preg_replace('{/api/v2/package}', '', $_SERVER['REQUEST_URI'], 1);
+
+$package = preg_replace('{' . $_SERVER['REWRITE_BASE'] . '}', '', $package, 1);
 list($id, $version) = explode('/', $package);
 $path = get_package_path($id, $version);
 
