@@ -2,8 +2,6 @@
 require(__DIR__ . '/../inc/core.php');
 require(__DIR__ . '/../inc/feedwriter.php');
 
-require_auth();
-
 // TODO: Pagination
 $results = DB::searchPackages([
 	'includePrerelease' => !empty($_GET['includeprerelease']),

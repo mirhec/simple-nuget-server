@@ -2,8 +2,6 @@
 require(__DIR__ . '/../inc/core.php');
 require(__DIR__ . '/../inc/feedwriter.php');
 
-require_auth();
-
 $id = trim($_GET['id'], '\'');
 $version = null;
 if (!empty($_GET['version'])) {
