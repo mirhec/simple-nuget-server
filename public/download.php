@@ -9,4 +9,5 @@ DB::incrementDownloadCount($id, $version);
 
 header('Content-Type: application/zip');
 header('Content-Disposition: attachment; filename="' . $id . '.' . $version . '.nupkg"');
-header('X-Accel-Redirect: ' . $path);
+//header('X-Accel-Redirect: ' . $path);
+readfile($path);

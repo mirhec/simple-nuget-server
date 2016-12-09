@@ -1,8 +1,8 @@
 # Remove or comment this Limit section if running Apache < 2.4.
 # http://stackoverflow.com/a/22040167/4003194
-<Limit PUT>
-Require all granted
-</Limit>
+#<Limit PUT>
+#Require all granted
+#</Limit>
 
 RewriteEngine on
 # Edit the base URL path of your feed.
