@@ -2,6 +2,8 @@
 require(__DIR__ . '/../inc/core.php');
 require(__DIR__ . '/../inc/feedwriter.php');
 
+require_auth();
+
 $package_ids = explode('|', trim($_GET['packageids'], '\''));
 $versions = explode('|', trim($_GET['versions'], '\''));
 $package_to_version = array_combine($package_ids, $versions);

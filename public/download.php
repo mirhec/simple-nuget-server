@@ -1,6 +1,8 @@
 <?php
 require(__DIR__ . '/../inc/core.php');
 
+require_auth();
+
 $id = $_GET['id'];
 $version = $_GET['version'];
 
